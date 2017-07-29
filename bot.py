@@ -21,13 +21,13 @@ async def on_message(message):
 
 	#AdminCommands
 	if message.content.startswith('!nickname'):
-		if str(message.author) == 'OsuTan#6594':
+		if str(message.author) == *adm*:
 			await client.send_message(message.channel, 'something happened')
 			name = re.sub(r'^!nickname ', '', message.content)
 			client.change_nickname(client.user, name)
 			
 	if message.content.startswith('!add'):
-		if str(message.author) == 'OsuTan#6594':
+		if str(message.author) == *adm*:
 			temp = re.sub('^!add ', '', message.content)
 			track = re.sub('@.*$', '', temp)
 			src = re.sub('^.*@', '', temp)
@@ -38,7 +38,7 @@ async def on_message(message):
 			await client.send_message(message.channel, 'Трек ' + track + ' добавлен в список!')
 			
 	if message.content.startswith('!comp'):
-		if str(message.author) == 'OsuTan#6594':
+		if str(message.author) == *adm*:
 			name = re.sub(r'^!comp ', '', message.content)
 			for i in client.voice_clients:
 				player.append (i.create_ffmpeg_player('music/' + name))
@@ -96,7 +96,7 @@ async def on_message(message):
 			player.append (await i.create_ytdl_player(track))
 			player[-1].start()
 			player[-1].volume = 0.05
-			await client.send_message(message.channel, 'Включаю \"' + str(player[-1].title)) #+ '\" (' + str(player[-1].duration) + ') на канале ' + str(list.index(list[-1])))
+			await client.send_message(message.channel, 'Включаю \"' + str(player[-1].title))
 			
 	if message.content.startswith('!stop'):
 		for i in player:
@@ -135,4 +135,4 @@ async def on_message(message):
 		await client.send_message(message.channel, 'Включаю ' + name)
 		
 
-client.run('MzM3MTkyNTUxODU1Njg1NjMy.DFDS_Q.tKpLyBW2yh_iIqOkLMOElMUmBJ8')
+client.run(*token*)
